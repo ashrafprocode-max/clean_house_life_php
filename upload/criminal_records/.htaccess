@@ -1,0 +1,34 @@
+# ============================================================
+# منع الوصول المباشر لمستندات الهوية الحساسة
+# البطاقة / الصحيفة الجنائية / إيصال المرافق
+#
+# الوصول الوحيد المسموح هو عبر بوّابة PHP:
+#   admin/providers/secure_image.php
+# التي تتحقق من صلاحية الإدارة قبل قراءة الملف
+#
+# ⚠️ لا تضع هذا الملف في upload/provider_profiles/
+#    لأن الصورة الشخصية عامة ويعرضها تطبيق العميل
+# ============================================================
+
+# Apache 2.4 وما بعده (المستخدم على Plesk)
+<IfModule mod_authz_core.c>
+    Require all denied
+</IfModule>
+
+# Apache 2.2 وما قبله (توافق مع الإصدارات القديمة)
+<IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+</IfModule>
+
+# منع تنفيذ أي ملف PHP رُفع لهذا المجلد بالخطأ أو عن قصد
+# (حماية إضافية ضد رفع ملف خبيث)
+<FilesMatch "\.(php|phtml|php3|php4|php5|php7|phps|pl|py|cgi|sh)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>

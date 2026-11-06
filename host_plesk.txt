@@ -1,0 +1,28 @@
+https://serv19.mubasherhost.com/
+
+Domain name: great-faraday.154-41-209-8.plesk.page
+
+goldinvest
+
+الدخول لحساب Plesk
+Ashraf_2025
+AGAi0c4thjr&t8$j
+
+e-commerce
+FTP:
+host:      154.41.209.8
+Username:  great-faraday_d6wdyj3grhe
+Password:  B0SYz^e1#mnhmgf9
+
+
+Database                    Ashraf_2025_
+Database user name:         Ashraf_2025
+Password:                   AGAi0c4thjr&t8$j
+Ashraf_2025_  Related to:   great-faraday.154-41-209-8.plesk.page
+Database server:            localhost:3306  (default for MariaDB, v10.5.26)
+
+
+flutter build apk --release
+flutter build windows --release
+flutter build web --release
+flutter build ios --release

@@ -1,0 +1,9 @@
+clean_house_life
+General
+Database name :   clean_house_life_prod
+
+Related site :Related 
+
+Users
+Database user name : clean_admin
+Password :  0g7Zhd0^5

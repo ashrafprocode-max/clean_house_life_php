@@ -1,0 +1,50 @@
+# ============================================================
+
+# منع الوصول المباشر لملفات المستندات التجارية الحساسة
+
+# (السجل التجاري والبطاقة الضريبية)
+
+#
+
+# الغرض: لا يُفتح أي ملف برابط مباشر مثل
+
+# .../upload/tax_cards/8412_1788.pdf
+
+# بل عبر بوّابة companies/secure_company_document.php فقط
+
+# وهي تتحقق من صلاحية الإدارة أو ملكية الشركة قبل القراءة
+
+#
+
+# ⚠️ PHP يقرأ الملفات بـ readfile من نظام الملفات مباشرة
+
+# ولا يمر بـ Apache، فهذا الحجب لا يعطّل البوّابة إطلاقاً
+
+# ============================================================
+
+# ===== صيغة Apache 2.4 (المستخدمة على Plesk و XAMPP الحديث) =====
+
+<IfModule mod_authz_core.c>
+    Require all denied
+</IfModule>
+
+# ===== صيغة Apache 2.2 القديمة (للتوافق) =====
+
+<IfModule !mod_authz_core.c>
+Order allow,deny
+Deny from all
+</IfModule>
+
+# ⚠️ منع تنفيذ أي ملف PHP رُفع بالخطأ داخل مجلد المستندات
+
+# حماية إضافية ضد رفع ملف خبيث بامتداد مزدوج مثل file.pdf.php
+
+<FilesMatch "\.(php|phtml|php3|php4|php5|php7|phps|cgi|pl|py|sh)$">
+<IfModule mod_authz_core.c>
+Require all denied
+</IfModule>
+<IfModule !mod_authz_core.c>
+Order allow,deny
+Deny from all
+</IfModule>
+</FilesMatch>
